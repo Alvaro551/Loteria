@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+ <html lang="es">
+ <head>
+  <meta charset="utf-8"> 
+  <title>HTML5::JS</title>
+<script src="js/funciones.js"></script>
+</head>
+<style type="text/css">
+	.tabla{
+		background-color: #33BEEE;
+	}
+
+	.t1{
+		background-color: red;
+	}
+
+	.t2{
+		background-color: cyan;
+	}
+
+	.t3{
+		background-color: lime;
+	}
+
+	.t4{
+		background-color: magenta;
+	}
+
+	.nada{
+		background-color: white;
+	}
+
+	h2{
+		background-color: #B40431;
+		color: white;
+	}
+
+	h3{
+		background-color: #FF4000;
+		color: white;
+	}
+
+	#div1, #div2 {
+		width:100px;
+		height:50px;
+		padding:10px;
+		border:1px solid #aaaaaa;
+	}
+
+
+	.container {
+		text-align: center;
+		width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+    
+    #copyFromArea, #pasteArea {
+     width: 600px;
+     height: 150px;
+     display: block;
+     margin-top: 16px;
+     margin-bottom: 16px;
+     resize: none;
+    }
+
+    button{
+    	background-color: #08088A;
+    	border: 2px solid #08088A;
+    	color: white;
+    }
+
+
+    .class1{
+    	background-color: #81BEF7;
+    }
+
+
+    .class2{
+    	background-color: #81AEFA;
+    }
+
+
+    #tag{
+    	background-color: #AABEF2;
+    	font-family: Courier;
+    }
+
+</style>
+<body onload="cargar();">
+<header><h1>Ejemplos JS</h1></header>
+<section id="contenedor">
+<article>
+<h2>1. Geolocalización</h2>
+</article>
+<aside>
+<p id="prrf1"></p>
+<button onclick="javascript:activa_origen();">Mostrar Posici&oacute;n</button>
+ </aside>
+
+
+<article>
+	<h2>2. document.querySelector('tag') y addEventListener('tipo evento',función)</h2>
+	<aside>
+	<label for="weather">Selecciona el tipo de cl&iacute;ma de hoy: </label>
+	<select id="weather">
+	<option value=""></option>
+	<option value="sunny">Sunny</option>
+	<option value="rainy">Rainy</option>
+	<option value="snowing">Snowing</option>
+	<option value="overcast">Overcast</option>
+	</select>
+<br/>
+<span></span>
+<script>
+var select = document.querySelector('select');
+var para = document.querySelector('span');
+select.addEventListener('change', setWeather);
+
+function setWeather() {
+  var choice = select.value;
+
+  if (choice === 'sunny') {
+    para.textContent = 'Agradable y soleado.';
+  } else if (choice === 'rainy') {
+    para.textContent = 'Lloviendo.';
+  } else if (choice === 'snowing') {
+    para.textContent = 'Un poco de nieve no hace daño.';
+  } else if (choice === 'overcast') {
+    para.textContent = 'Cielo gris.';
+  } else {
+    para.textContent = '';
+  }
+}
+</script>
+	</aside>
+</article>
+<article>
+<h2>3. addEventListener('tipo evento',función), document.getElementById('id')  , onkeydown y onkeyup</h2>
+	<aside>
+	<p>Introduce texto:</p>
+	<input type="text" id="txt1" onkeydown="keydownFunction()" onkeyup="keyupFunction()"/><br/>
+    <input type="button" id="btn1" value=""/><br/>
+    <p id="prrf2"></p>
+    <script>
+    document.getElementById('btn1').addEventListener('click',function(){
+    	document.getElementById('prrf2').textContent = 'Valor recuperado: '+document.getElementById('txt1').value;
+    });
+    </script>
+	</aside>
+</article>
+
+<article>
+<h2>4. addEventListener('tipo evento',función) y document.getElementById('id')</h2>
+	<aside>
+	<p>Introduce texto:</p>
+	<input type="text" id="txt2"/><br/>
+    <button id="btn2">Obtener</button>
+    <p id="prrf3"></p>
+    <script>
+    document.getElementById('btn2').addEventListener('click',function(){
+    	document.getElementById('prrf3').textContent = 'Valor recuperado: '+document.getElementById('txt2').value;
+    });
+    </script>
+	</aside>
+</article>
+
+
+
+<article>
+<h2>5. addEventListener('tipo evento',función) y document.getElementById('id')</h2>
+	<aside>
+
+	<p id="prrf4"></p>
+	<p id="prrf5"></p>
+
+    <script>
+    document.getElementById('prrf4').addEventListener('click',function(){
+    	document.getElementById('prrf4').textContent='El asesinato de Sartre. El despertar del hombre libre. ';
+    });
+
+    document.getElementById('prrf4').addEventListener('dblclick',function(){
+    	document.getElementById('prrf4').textContent='El asesinato de Sartre.';
+    });
+
+    document.getElementById('prrf5').addEventListener('mouseover',function(){
+    	document.getElementById('prrf5').textContent='Pecados capitales. El detective. ';
+    });
+
+    document.getElementById('prrf5').addEventListener('mouseout',function(){
+    	document.getElementById('prrf5').textContent='Pecados capitales.';
+    });
+    </script>
+	</aside>
+</article>
+
+
+<article>
+<h2>6. document.classList.add('claseCss') , document.classList.remove('claseCss') y document.className = "clase"; </h2>
+	<aside>
+	<p id="prrf6">Texto obtenido:</p>
+<table id="t" border="4">
+  <tr><td id="t1">El ateo arrepentido.</td></tr>
+  <tr><td id="t2">Planeta destino: Marte.</td></tr>
+  <tr><td id="t3">El libro de los naufragios.</td></tr>
+  <tr><td id="t4">El abogado italiano.</td></tr>
+</table>
+    <script>
+    document.getElementById('t').addEventListener('mouseover',function(){
+    	document.getElementById("t").classList.add("tabla");
+    });
+
+    document.getElementById('t').addEventListener('mouseout',function(){
+    	document.getElementById("t").classList.remove("tabla");
+    });
+
+
+    document.getElementById('t1').addEventListener('mouseover',function(){
+    	this.className = "t1";
+    	document.getElementById("prrf6").textContent='Texto obtenido:'+document.getElementById("t1").textContent ;
+    });
+
+    document.getElementById('t1').addEventListener('mouseout',function(){
+    	this.className = "nada";
+    	document.getElementById("prrf6").textContent='Texto obtenido:';
+    });
+
+
+    document.getElementById('t2').addEventListener('mouseover',function(){
+    	this.className = "t2";
+    	document.getElementById("prrf6").textContent='Texto obtenido:'+document.getElementById("t2").textContent ;
+    });
+
+    document.getElementById('t2').addEventListener('mouseout',function(){
+    	this.className = "nada";
+    	document.getElementById("prrf6").textContent='Texto obtenido:';
+    });
+
+
+    document.getElementById('t3').addEventListener('mouseover',function(){
+    	this.className = "t3";
+    	document.getElementById("prrf6").textContent='Texto obtenido:'+document.getElementById("t3").textContent ;
+    });
+
+    document.getElementById('t3').addEventListener('mouseout',function(){
+    	this.className = "nada";
+    	document.getElementById("prrf6").textContent='Texto obtenido:';
+    });
+
+
+    document.getElementById('t4').addEventListener('mouseover',function(){
+    	this.className = "t4";
+    	document.getElementById("prrf6").textContent='Texto obtenido:'+document.getElementById("t4").textContent ;
+    });
+
+    document.getElementById('t4').addEventListener('mouseout',function(){
+    	this.className = "nada";
+    	document.getElementById("prrf6").textContent='Texto obtenido:';
+    });
+    </script>
+	</aside>
+</article>
+
+<article>
+<h2>7. target.addEventListener('click', listener, false) y target.removeEventListener('click', listener, false); </h2>
+	<aside>
+	<p id="prrf7">Este p&aacute;rrafo tiene un evento 'click'</p>
+    <script>
+    var prrf7 = document.getElementById('prrf7');
+    var listener = function (event) {
+    	document.getElementById('prrf7').textContent='Mi evento ha desaparecido';
+    	prrf7.removeEventListener('click', listener, false);
+    };
+    prrf7.addEventListener('click', listener, false);
+    </script>
+	</aside>
+</article>
+
+
+<article>
+<h2>8. Texto editable </h2>
+	<aside>
+	<p id="prrf8">Este p&aacute;rrafo es editable.</p>
+	<p id="prrf9"></p>
+    <script>
+    document.getElementById('prrf8').addEventListener('keypress',function(){
+    	document.getElementById('prrf9').textContent = this.textContent;
+    });
+
+    document.getElementById('prrf8').addEventListener('onkeyup',function(){
+    	document.getElementById('prrf9').textContent = this.textContent;
+    });
+
+    document.getElementById('prrf8').addEventListener('onkeydown',function(){
+    	document.getElementById('prrf9').textContent = this.textContent;
+    });
+
+    document.getElementById('prrf8').addEventListener('click',function(){
+    	this.textContent = '';
+    });
+
+    document.getElementById('prrf9').addEventListener('click',function(){
+    	document.getElementById('prrf8').textContent = 'Este párrafo es editable.';
+    	this.textContent = '';
+    });
+
+    </script>
+	</aside>
+</article>
+
+
+<article>
+<h2>9. Copiar, cortar y pegar texto.</h2>
+	<aside>
+	<p id="prrf10">Copia este p&aacute;rrafo es editable.</p>
+	<p id="prrf11"></p>
+    <script>
+    document.getElementById('prrf10').addEventListener('click',function(){
+    	this.textContent='';
+    	document.getElementById('prrf11').textContent='Comienza a escribir';
+    	document.getElementById("prrf11").style.color = "#A4A4A4";
+    });
+    </script>
+	</aside>
+</article>
+
+
+<article>
+	<h2>10. Drop Event</h2>
+	<aside>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<span id="drag" draggable="true" ondragstart="drag(event)">Arrastrame al otro div</span>
+	</div>
+	<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	</aside>
+</article>
+
+<article>
+	<h2>11. Copiar texto</h2>
+	<script type="text/javascript">
+		/**
+             * The copy event listener
+             * Currently overwrites whatever is being copied with your content
+             * This won't stop people copying from your site - people can always disable javascript!
+             */
+    document.addEventListener('copy', function(e){
+        e.clipboardData.setData('text/plain', 'Texto copiado');
+        e.preventDefault();
+    });
+            /**
+             * The paste event listener 
+             * Splitting the text is just to show that you can 
+             * manipulate the text as you are pasting it
+             */
+    document.addEventListener('paste', function(e){
+        var values = e.clipboardData.getData('text/plain').split(" ");
+        document.getElementById('pasteArea').value = values[1];
+        e.preventDefault();
+    });
+            /**
+             * Resets the content of the pasteArea textarea to make things easier to demonstrate
+             * This is not central to the video
+             */
+    function reset() {
+        document.getElementById('pasteArea').value = '';
+    }
+	</script>
+	<aside>
+		<div class="container">
+            <textarea id="copyFromArea">Algún texto.</textarea>
+            <button onclick="document.execCommand('copy');">Copia este texto.</button>
+            <textarea id="pasteArea"></textarea>
+            <button onclick="reset();">Reset</button>
+        </div>
+	</aside>
+</article>
+
+<article>
+	<h2>12. POO </h2>
+	<aside>
+	<p id="prrf12"></p>
+		<button id="btn3">Obtener</button>
+		<script>
+			document.getElementById('btn3').addEventListener('click',function(){
+				datos();
+			});
+		</script>
+	</aside>
+</article>
+
+
+<article>
+	<h2>13. Prototype (extendiendo clases) </h2>
+	<aside>
+	<p id="prrf16"></p>
+	<p id="prrf17"></p>
+	<p id="prrf13"></p>
+	<p id="prrf14"></p>
+	<p id="prrf15"></p>
+		<button id="btn4" onclick="datos1()">Obtener</button>
+		<script>
+		function datos1(){
+			var login = document.getElementById('prrf13').textContent;
+			var passw = document.getElementById('prrf14').textContent;
+			var area = document.getElementById('prrf15').textContent;
+			var fecha = new Date();
+			objUser = new Usuario(login, passw, "22/08/2017");
+			objUser.area= area;
+			objUser.fecha = fecha.toString();
+			console.log('fecha:'+objUser.fecha)
+			document.getElementById('prrf16').innerHTML='Usuario:'
+			+objUser.login
+			+'<br/>Password: '+objUser.passw
+			+'<br/>Área: '+objUser.area
+			+'<br/>Fecha: '+objUser.fecha;
+
+			document.getElementById('prrf17').innerHTML = objUser.verDatosUsuario()
+		}
+		</script>
+	</aside>
+</article>
+
+<article>
+	<h2>14. Prototype (extendiendo clases) </h2>
+	<aside>
+	<p id="prrf18"></p>
+	<p id="prrf19"></p>
+	<p id="prrf20"></p>
+	<p id="prrf21"></p>
+		<button id="btn5">Obtener</button>
+	</aside>
+</article>
+
+<article>
+	<h2>15. Prototype (extendiendo clases) </h2>
+	<aside>
+	<p id="prrf22"></p>
+		<button id="btn6">Obtener</button>
+	</aside>
+</article>
+
+
+<article>
+	<h2>16. Prototype (extendiendo clases) </h2>
+	<aside>
+	<p id="prrf23"></p>
+		<button id="btn7">Obtener</button>
+	</aside>
+</article>
+
+
+<article>
+	<h2>17. DOM (target.style.visibility='hidden')  ; (target.style.visibility='visibility')  </h2>
+	<aside>
+	<div id='div3' class="class1" style="visibility: hidden;">
+		<p id="prrf24">Texto</p>
+		<ul class="class2">
+			<li>Uno</li>
+			<li>
+				<ol>
+					<li>Java</li>
+					<li id="tag">Ceylon</li>
+				</ol>
+
+			</li>
+			<li>Tres</li>
+		</ul>
+	</div>
+		<button id="btn8">Obtener</button>
+	</aside>
+</article>
+
+
+
+<article>
+	<h2>18. map, filter, reduce  </h2>
+	<aside>
+		<p id="prrf25"></p>
+		<button id="btn9">Map</button><br/>
+		<p id="prrf26"></p>
+		<button id="btn10">Reduce</button><br/>
+		<p id="prrf27"></p>
+		<button id="btn11">Filter</button><br/>
+	</aside>
+</article>
+
+<article>
+	<h2>19. querySelector('target') </h2>
+	<aside>
+		<p class="prrf28"></p>
+		<button class="btn12">Seleccionar</button><br/>
+	</aside>
+</article>
+
+
+<article>
+	<h2>20. querySelectorAll('target') </h2>
+	<aside>
+	    <h4 class="prrf29">Este es un encabezado</h4>
+		<p class="prrf29">Este es un párrafo</p>
+		<button class="btn13">Seleccionar</button><br/>
+	</aside>
+</article>
+
+
+<article>
+	<h2>21. JSON.parse(objJSON); </h2>
+	<aside>
+		<p id="prrf30"></p>
+		<button id="btn14">Obtener</button><br/>
+	</aside>
+</article>
+
+
+<article>
+	<h2>22. Clases y prototype </h2>
+	<aside>
+		<p id="prrf31"></p>
+		<button id="btn15">Obtener</button><br/>
+	</aside>
+</article>
+
+
+<article>
+	<h2>23. Clases </h2>
+	<aside>
+		<p id="prrf32"></p>
+		<button id="btn16">Obtener</button><br/>
+	</aside>
+</article>
+
+
+<article>
+	<h2>24. Clases </h2>
+	<aside>
+		<p id="prrf33"></p>
+		<button id="btn17">Obtener</button><br/>
+	</aside>
+</article>
+
+<article>
+	<h2>25. Select </h2>
+	<aside>
+			<select onchange="cambio();" id="select1">
+				<option value="Java">Java</option>
+				<option value="C#">C#</option>
+				<option value="Python">Python</option>
+				<option value="Groovy">Groovy</option>
+			</select>
+	</aside>
+	<script type="text/javascript">
+		function cambio() {
+			console.log("Cambio");
+			var select1= document.getElementById("select1").value;
+			var prrf34= document.getElementById("prrf34");
+			prrf34.innerHTML='<h3>Elegiste: '+ select1+'</h4>';
+		}
+	</script>
+	<p id="prrf34"></p>
+</article>
+
+
+<article>
+	<h2>26. Checkbox </h2>
+	<aside>
+		<form name="form_check">
+			<input type="checkbox" name="checks" value="México" /> México
+			<input type="checkbox" name="checks" value="Italia" /> Italia
+			<input type="checkbox" name="checks" value="Egipto" /> Egipto
+			<input type="checkbox" name="checks" value="Holanda" /> Holanda
+			<input type="checkbox" name="checks" value="España" /> España
+		</form>
+		<p id="prrf37"></p>
+		<button id="btn18">Comprobar</button>
+	</aside>
+</article>
+
+
+<article>
+	<h2>27. Radiobox </h2>
+	<aside>
+		<form name="form_radio">
+			<input type="radio" name="radios" value="Gatos" id="gatos"/> Gatos
+			<input type="radio" name="radios" value="Perros" id="perros" /> Perros
+		</form>
+		<p id="prrf38"></p>
+		<button id="btn19">Comprobar</button>
+	</aside>
+</article>
+
+
+<article>
+	<h2>28. Radiobox </h2>
+	<aside>
+		<form name="form_radio">
+			<input type="radio" name="radios" value="Gatos" id="gatos"/> Gatos
+			<input type="radio" name="radios" value="Perros" id="perros" /> Perros
+		</form>
+		<p id="prrf38"></p>
+		<button id="btn19">Comprobar</button>
+	</aside>
+</article>
+
+</section>
+<footer>@codemonkeyjunior</footer>
+</body>
+</hml>

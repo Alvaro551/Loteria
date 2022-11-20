@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <title>&copy; Alvaro Medina</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script>
+        function rando() {
+            comb = [];
+            comb_usuario = [];
+           
+            for (i = 0; i < 6; i++) {
+                repetido = true;
+                do {
+                    num = Math.floor((Math.random() * 48) + 1);
+                    existe = false;
+                    for (j = 0; j < i; j++) {
+                        existe = existe || (num == comb[j]);
+                    }
+                } while (existe);
+                comb.push(num);
+            }
+            ordenarArray(comb);
+            return comb;
+        }
+
+        function ordenarArray(array) {
+            return array.sort((a, b) => a - b);
+        }
+
+        function printLinea() {
+
+            for (var i = 0; i < 6; i++) {
+                document.write("<input type='number' id= " + i + " min='1' max='49' value=" + comb[i] + ">");
+            }
+
+            return comb;
+
+        }
+
+        function printLineaG() {
+            comb_win = [];
+
+             for (let index = 0; index < comb.length; index++) {
+                comb_win[index] = comb[index];
+                
+             }
+
+            for (var i = 0; i < 6; i++) {
+                document.write("<input type='number' min='1' max='49' value=" + comb_win[i] + ">");
+            }
+
+        }
+
+        function pintarNumerosEnN(comb) {
+            for (let index = 0; index < comb.length; index++) {
+                document.getElementById("numero" + (index + 1)).value = comb[index];
+            }
+        }
+
+
+        function comprobacion() {
+            for (i = 0; i < 6; i++) {
+                if (comb_usuario[i] == comb[i])
+                    node.innerHTML = data;
+            }
+        }
+
+        function myFunction(clicked_id) {
+            console.log(comb_win);
+            console.log(comb);
+            alert("No has ganado")
+        }
+    </script>
+</head>
+
+<body>
+    <div class="contenedor">
+        <h1>Loteria</h1>
+        <script>
+            rando();
+            printLineaG();
+            document.write("<button onclick=myFunction();>Probar combinación</button>");
+            console.log("a")
+        </script>
+         <div class="contenedor">
+            <script>
+                for (let index = 0; index < 51; index++) {
+                    rando();
+                    printLinea();
+                    document.write("<button id=" + index + " onclick=myFunction();>Probar combinación</button>" +
+                        "<br>" + (index + 1));
+                }
+            </script>
+</body>
+</html>
