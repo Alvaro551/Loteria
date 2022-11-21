@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <title>Javascript Login Form Validation</title>
+    <script>
+        function validate() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            //comprobaciones 
+            if (comprobarUsuario(username)) {
+                document.getElementById("mensaje").innerHTML += "El usuario cumple los requisitos<br>";
+            } else {
+                document.getElementById("mensaje").innerHTML += "El usuario no cumple los requisitos<br>";
+            }
+
+            if (comprobarContraseña(password)) {
+                document.getElementById("mensaje").innerHTML += "La contraseña cumple los requisitos<br>";
+            } else {
+                document.getElementById("mensaje").innerHTML += "La contraseña no cumple los requisitos<br>";
+            }
+
+        }
+
+        function comprobarUsuario(username) {
+            var letras = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            var array = letras.split(" ");
+            disparadorUsuario = false;
+            for (let index = 0; index < username.length && disparadorUsuario == false; index++) {
+                const element = username[index];
+                if (!letras.includes(element)) {
+                    disparadorUsuario = true;
+                }
+            }
+
+            if (username == "") {
+                document.getElementById("mensaje").innerHTML += "Usuario vacio<br>";
+                return false;
+            }
+
+            if (!disparadorUsuario) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+        
+
+        function comprobarContraseña(password) {
+            var letras2 = 'QWERTYUIOPASDFGHJKLÑZXCVBNM';
+            var array2 = letras2.split(" ");
+            disparadorContraseña = false;
+            for (let index = 0; index < password.length; index++) {
+                const element = password[index];
+                if (    letras2.includes(element)) {
+                    disparadorContraseña = true;
+                }
+            }
+            var letras3 = 'qwertyuiopasdfghjklñzxcvbnm';
+            var array3 = letras3.split(" ");
+            disparadorContraseña2 = false;
+            for (let index = 0; index < password.length ; index++) {
+                const element2 = password[index];
+                if (letras3.includes(element2)) {
+                    disparadorContraseña2 = true;
+                }
+            }
+            var letras4 = '1234567890';
+            var array4 = letras4.split(" ");
+            disparadorContraseña3 = false;
+            for (let index = 0; index < password.length; index++) {
+                const element3 = password[index];
+                if (letras4.includes(element3)) {
+                    disparadorContraseña3 = true;
+                }
+            }
+            var letras5 = '_*-?.,';
+            var array5 = letras5.split(" ");
+            disparadorContraseña4 = false;
+            for (let index = 0; index < password.length; index++) {
+                const element4 = password[index];
+                if (letras5.includes(element4)) {
+                    disparadorContraseña4 = true;
+                }
+            }
+            if (password == "") {
+                document.getElementById("mensaje").innerHTML += "Contraseña vacia <br>";
+                return false;
+            }
+
+            console.log(disparadorContraseña);
+            console.log(disparadorContraseña2);
+            console.log(disparadorContraseña3);
+            console.log(disparadorContraseña4);
+
+            if (disparadorContraseña==true && disparadorContraseña2==true  && disparadorContraseña3==true  &&
+                disparadorContraseña4==true ) {
+                return true;
+            } else {
+                return false  ;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <form>
+                <label>User Name :</label>
+                <input type="text" name="username" id="username" />
+                <label>Password :</label>
+                <input type="password" name="password" id="password" />
+                <input type="button" value="Login" id="submit" onclick="validate()">
+                <input type="button" value="Loteria" id="submit" onclick="location='loteria.html'"/>
+                <p id="mensaje"></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
